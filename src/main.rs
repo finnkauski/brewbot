@@ -69,7 +69,10 @@ fn my_help(
 #[bucket = "nospam"]
 fn hi(ctx: &mut Context, msg: &Message) -> CommandResult {
     msg.reply(ctx, "こんにちは!")?;
-    println!("id: {} - user: {}: said hi", msg.author.name, msg.author.id);
+    println!(
+        "id: {} - user: {}: said hi!",
+        msg.author.name, msg.author.id
+    );
     Ok(())
 }
 
@@ -77,7 +80,7 @@ fn hi(ctx: &mut Context, msg: &Message) -> CommandResult {
 #[description = "HAL-9000"]
 #[checks(Owner)]
 fn hal(ctx: &mut Context, msg: &Message) -> CommandResult {
-    let contents = format!(":red_circle: Yes, {}?", msg.author.name);
+    let contents = ":red_circle: Yes, Artie?";
     if let Err(why) = msg.channel_id.say(&ctx.http, &contents) {
         println!("Error sending message: {:?}", why);
     };
